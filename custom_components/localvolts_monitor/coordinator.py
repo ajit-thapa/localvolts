@@ -31,7 +31,7 @@ class LocalvoltsMonitorCoordinator(DataUpdateCoordinator):
 
     async def _async_update_data(self) -> Dict[str, Any]:
         now_utc = datetime.datetime.now(datetime.timezone.utc)
-        from_time = now_utc - datetime.timedelta(minutes=5)
+        from_time = now_utc - datetime.timedelta(minutes=15)
         to_time = now_utc
 
         fmt = "%Y-%m-%dT%H:%M:%SZ"
