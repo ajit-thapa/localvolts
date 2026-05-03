@@ -30,15 +30,24 @@ All sensors are prefixed with `LV` and appear under one device named **Localvolt
 
 ## Installation
 
+### HACS (Recommended)
+
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
+
+1. Make sure [HACS](https://hacs.xyz) is installed in your Home Assistant.
+2. In the Home Assistant sidebar, go to **HACS**.
+3. Click the **three dots** menu in the top right corner and select **Custom repositories**.
+4. Paste the repository URL:  
+   `https://github.com/ajit-thapa/localvolts`
+5. Choose **Integration** as the category and click **Add**.
+6. Still in HACS, search for "Localvolts Energy Monitor" and click **Download**.
+7. Restart Home Assistant.
+
 ### Manual
 
 1. Download or clone this repository.
 2. Copy the `custom_components/localvolts_monitor` folder into your Home Assistant `custom_components` directory.
 3. Restart Home Assistant.
-
-### HACS (coming soon)
-
-(Once available, you will be able to add this repository as a custom integration in HACS.)
 
 ---
 
@@ -147,11 +156,13 @@ Go to the integration's card in HA, click the three‑dot menu, and choose **Con
 
 ## License
 
-MIT (or your preferred license – please insert the appropriate license text)
+MIT
 
 ---
 
 ## Credits
 
-This integration is not affiliated with Localvolts Pty Ltd, but uses their public API.  
+Original concept and initial codebase by [gurrier](https://github.com/gurrier).  
+This rewrite is a community effort and is not affiliated with Localvolts Pty Ltd, but uses their public API.
+
 API documentation: [Localvolts API Guide](https://api.localvolts.com) (see table 5 for field details).
