@@ -31,8 +31,8 @@ class LocalvoltsMonitorCoordinator(DataUpdateCoordinator):
 
     async def _async_update_data(self) -> Dict[str, Any]:
         now_utc = datetime.datetime.now(datetime.timezone.utc)
-        from_time = now_utc
-        to_time = now_utc + datetime.timedelta(minutes=5)
+        from_time = now_utc - datetime.timedelta(minutes=5)
+        to_time = now_utc
 
         url = (f"https://api.localvolts.com/v1/customer/interval?"
                f"NMI={self.nmi_id}&from={from_time.isoformat()}&to={to_time.isoformat()}")
