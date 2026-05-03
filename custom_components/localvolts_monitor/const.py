@@ -15,14 +15,12 @@ def validate_nmi_id(nmi: str) -> bool:
     nmi = nmi.strip().upper()
     return len(nmi) == 10 and nmi.isalnum()
 
+
 CONF_API_KEY = "api_key"
 CONF_PARTNER_ID = "partner_id"
 CONF_NMI_ID = "nmi_id"
 
-ENTITY_PREFIX = "LV "
-
-# Sensor definitions: (api_key, name, unit, device_class, conversion_factor)
-# conversion_factor multiplies raw API value (cents, Wh, etc.) into display unit ($, kWh, etc.)
+# Sensor definitions: (api_key, name_suffix, unit, device_class, conversion_factor)
 SENSOR_DEFINITIONS = [
     # Flex pricing
     ("earningsFlexUp", "Export Price (flex up)", "$/kWh", None, 0.01),

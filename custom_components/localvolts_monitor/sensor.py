@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from homeassistant.helpers.device_registry import DeviceEntryType
 
-from .const import DOMAIN, SENSOR_DEFINITIONS, ENTITY_PREFIX
+from .const import DOMAIN, SENSOR_DEFINITIONS
 from .coordinator import LocalvoltsMonitorCoordinator
 
 _LOGGER = logging.getLogger(__name__)
@@ -27,23 +27,24 @@ class LocalvoltsNumericSensor(CoordinatorEntity, SensorEntity):
         self,
         coordinator: LocalvoltsMonitorCoordinator,
         key: str,
-        name: str,
+        suffix: str,
         unit: str,
         device_class: SensorDeviceClass | None,
         factor: float,
     ) -> None:
         super().__init__(coordinator)
         self._key = key
-        self._attr_name = ENTITY_PREFIX + name
-        self._attr_unique_id = f"{coordinator.nmi_id}_{key}"
+        nmi = coordinator.nmi_id
+        self._attr_name = f"NMI {nmi} {suffix}"
+        self._attr_unique_id = f"{nmi}_{key}"
         self._attr_native_unit_of_measurement = unit
         self._attr_device_class = device_class
         self._factor = factor
         self._cached_value: float | None = None
 
         self._attr_device_info = {
-            "identifiers": {(DOMAIN, coordinator.nmi_id)},
-            "name": f"Localvolts NMI {coordinator.nmi_id}",
+            "identifiers": {(DOMAIN, nmi)},
+            "name": f"Localvolts NMI {nmi}",
             "manufacturer": "Localvolts",
             "model": "Virtual Energy Meter",
             "entry_type": DeviceEntryType.SERVICE,
@@ -71,11 +72,12 @@ class LocalvoltsDataLagSensor(CoordinatorEntity, SensorEntity):
 
     def __init__(self, coordinator: LocalvoltsMonitorCoordinator) -> None:
         super().__init__(coordinator)
-        self._attr_name = ENTITY_PREFIX + "Data Lag"
-        self._attr_unique_id = f"{coordinator.nmi_id}_data_lag"
+        nmi = coordinator.nmi_id
+        self._attr_name = f"NMI {nmi} Data Lag"
+        self._attr_unique_id = f"{nmi}_data_lag"
         self._attr_device_info = {
-            "identifiers": {(DOMAIN, coordinator.nmi_id)},
-            "name": f"Localvolts NMI {coordinator.nmi_id}",
+            "identifiers": {(DOMAIN, nmi)},
+            "name": f"Localvolts NMI {nmi}",
             "manufacturer": "Localvolts",
             "model": "Virtual Energy Meter",
             "entry_type": DeviceEntryType.SERVICE,
@@ -95,11 +97,12 @@ class LocalvoltsIntervalEndSensor(CoordinatorEntity, SensorEntity):
 
     def __init__(self, coordinator: LocalvoltsMonitorCoordinator) -> None:
         super().__init__(coordinator)
-        self._attr_name = ENTITY_PREFIX + "Interval End"
-        self._attr_unique_id = f"{coordinator.nmi_id}_interval_end"
+        nmi = coordinator.nmi_id
+        self._attr_name = f"NMI {nmi} Interval End"
+        self._attr_unique_id = f"{nmi}_interval_end"
         self._attr_device_info = {
-            "identifiers": {(DOMAIN, coordinator.nmi_id)},
-            "name": f"Localvolts NMI {coordinator.nmi_id}",
+            "identifiers": {(DOMAIN, nmi)},
+            "name": f"Localvolts NMI {nmi}",
             "manufacturer": "Localvolts",
             "model": "Virtual Energy Meter",
             "entry_type": DeviceEntryType.SERVICE,
@@ -118,11 +121,12 @@ class LocalvoltsLastUpdateSensor(CoordinatorEntity, SensorEntity):
 
     def __init__(self, coordinator: LocalvoltsMonitorCoordinator) -> None:
         super().__init__(coordinator)
-        self._attr_name = ENTITY_PREFIX + "Last Update"
-        self._attr_unique_id = f"{coordinator.nmi_id}_last_update"
+        nmi = coordinator.nmi_id
+        self._attr_name = f"NMI {nmi} Last Update"
+        self._attr_unique_id = f"{nmi}_last_update"
         self._attr_device_info = {
-            "identifiers": {(DOMAIN, coordinator.nmi_id)},
-            "name": f"Localvolts NMI {coordinator.nmi_id}",
+            "identifiers": {(DOMAIN, nmi)},
+            "name": f"Localvolts NMI {nmi}",
             "manufacturer": "Localvolts",
             "model": "Virtual Energy Meter",
             "entry_type": DeviceEntryType.SERVICE,
@@ -142,11 +146,12 @@ class LocalvoltsQualitySensor(CoordinatorEntity, SensorEntity):
 
     def __init__(self, coordinator: LocalvoltsMonitorCoordinator) -> None:
         super().__init__(coordinator)
-        self._attr_name = ENTITY_PREFIX + "Data Quality"
-        self._attr_unique_id = f"{coordinator.nmi_id}_quality"
+        nmi = coordinator.nmi_id
+        self._attr_name = f"NMI {nmi} Data Quality"
+        self._attr_unique_id = f"{nmi}_quality"
         self._attr_device_info = {
-            "identifiers": {(DOMAIN, coordinator.nmi_id)},
-            "name": f"Localvolts NMI {coordinator.nmi_id}",
+            "identifiers": {(DOMAIN, nmi)},
+            "name": f"Localvolts NMI {nmi}",
             "manufacturer": "Localvolts",
             "model": "Virtual Energy Meter",
             "entry_type": DeviceEntryType.SERVICE,
@@ -165,9 +170,9 @@ async def async_setup_entry(
     coordinator = hass.data[DOMAIN][config_entry.entry_id]
 
     entities = []
-    for key, name, unit, device_class, factor in SENSOR_DEFINITIONS:
+    for key, suffix, unit, device_class, factor in SENSOR_DEFINITIONS:
         entities.append(
-            LocalvoltsNumericSensor(coordinator, key, name, unit, device_class, factor)
+            LocalvoltsNumericSensor(coordinator, key, suffix, unit, device_class, factor)
         )
     entities.append(LocalvoltsDataLagSensor(coordinator))
     entities.append(LocalvoltsIntervalEndSensor(coordinator))
