@@ -7,8 +7,7 @@ from homeassistant.core import callback
 from homeassistant.data_entry_flow import FlowResult
 from homeassistant.helpers import config_validation as cv
 
-from .const import DOMAIN, CONF_API_KEY, CONF_PARTNER_ID, CONF_NMI_ID
-from . import validate_api_key, validate_partner_id, validate_nmi_id
+from .const import DOMAIN, CONF_API_KEY, CONF_PARTNER_ID, CONF_NMI_ID, validate_api_key, validate_partner_id, validate_nmi_id
 
 _LOGGER = logging.getLogger(__name__)
 

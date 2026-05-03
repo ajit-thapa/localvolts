@@ -11,19 +11,6 @@ _LOGGER = logging.getLogger(__name__)
 PLATFORMS = [Platform.SENSOR]
 
 
-def validate_api_key(key: str) -> bool:
-    return bool(key.strip())
-
-
-def validate_partner_id(pid: str) -> bool:
-    return bool(pid.strip())
-
-
-def validate_nmi_id(nmi: str) -> bool:
-    nmi = nmi.strip().upper()
-    return len(nmi) == 10 and nmi.isalnum()
-
-
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     coordinator = LocalvoltsMonitorCoordinator(
         hass,
