@@ -72,29 +72,29 @@ Example for NMI `4103XXXXXX`:
 
 | Sensor name (user‑friendly)                | Entity ID example (NMI=4103xxxxxx)                       | Description                                            | Unit        |
 |--------------------------------------------|----------------------------------------------------------|--------------------------------------------------------|-------------|
-| NMI {nmi} Export Price (flex up)           | `sensor.nmi_4103xxxxxx_export_price_flex_up`             | Extra earnings per kWh if you export more            | $/kWh       |
-| NMI {nmi} Export Price (flex down)         | `sensor.nmi_4103xxxxxx_export_price_flex_down`           | Earnings lost per kWh if you reduce exports          | $/kWh       |
-| NMI {nmi} Import Cost (flex up)            | `sensor.nmi_4103xxxxxx_import_cost_flex_up`              | Extra cost per kWh if you import more                | $/kWh       |
-| NMI {nmi} Import Cost (flex down)          | `sensor.nmi_4103xxxxxx_import_cost_flex_down`            | Savings per kWh if you reduce imports                | $/kWh       |
-| NMI {nmi} Peak Demand                      | `sensor.nmi_4103xxxxxx_peak_demand`                      | Peak average demand over the demand window           | kW (or kVA) |
-| NMI {nmi} Total Exports                    | `sensor.nmi_4103xxxxxx_total_exports`                    | Energy exported during the interval                  | kWh         |
-| NMI {nmi} Total Imports                    | `sensor.nmi_4103xxxxxx_total_imports`                    | Energy imported during the interval                  | kWh         |
-| NMI {nmi} Total Earnings                   | `sensor.nmi_4103xxxxxx_total_earnings`                   | Total earnings in the interval                       | $           |
-| NMI {nmi} Variable Earnings                | `sensor.nmi_4103xxxxxx_variable_earnings`                | Variable portion of earnings                         | $           |
-| NMI {nmi} Fixed Earnings                   | `sensor.nmi_4103xxxxxx_fixed_earnings`                   | Fixed portion of earnings                            | $           |
-| NMI {nmi} Total Costs                      | `sensor.nmi_4103xxxxxx_total_costs`                      | Total costs in the interval                          | $           |
-| NMI {nmi} Variable Costs                   | `sensor.nmi_4103xxxxxx_variable_costs`                   | Variable portion of costs                            | $           |
-| NMI {nmi} Fixed Costs                      | `sensor.nmi_4103xxxxxx_fixed_costs`                      | Fixed portion of costs                               | $           |
-| NMI {nmi} Variable Export Rate             | `sensor.nmi_4103xxxxxx_variable_export_rate`             | Variable earnings rate (N/A when no exports)         | $/kWh       |
-| NMI {nmi} Variable Import Rate             | `sensor.nmi_4103xxxxxx_variable_import_rate`             | Variable cost rate (N/A when no imports)             | $/kWh       |
-| NMI {nmi} Export Emissions                 | `sensor.nmi_4103xxxxxx_export_emissions`                 | Emissions associated with grid‑injected energy       | gCO₂e       |
-| NMI {nmi} Import Emissions                 | `sensor.nmi_4103xxxxxx_import_emissions`                 | Emissions associated with energy drawn from the grid  | gCO₂e       |
-| NMI {nmi} Export Renewables %              | `sensor.nmi_4103xxxxxx_export_renewables_pct`            | Share of zero‑emission energy in exports             | %           |
-| NMI {nmi} Import Renewables %              | `sensor.nmi_4103xxxxxx_import_renewables_pct`            | Share of zero‑emission energy in imports             | %           |
-| NMI {nmi} Data Lag                         | `sensor.nmi_4103xxxxxx_data_lag`                         | Seconds between interval start and last data refresh | s           |
-| NMI {nmi} Interval End                     | `sensor.nmi_4103xxxxxx_interval_end`                     | UTC timestamp marking the end of the current interval| datetime    |
-| NMI {nmi} Last Update                      | `sensor.nmi_4103xxxxxx_last_update`                      | When the data was last fetched from Localvolts       | datetime    |
-| NMI {nmi} Data Quality                     | `sensor.nmi_4103xxxxxx_data_quality`                     | `Act`, `Exp`, or `Fcst`                               | –           |
+| Export Price (flex up)           | `sensor.nmi_4103xxxxxx_export_price_flex_up`             | Extra earnings per kWh if you export more            | $/kWh       |
+| Export Price (flex down)         | `sensor.nmi_4103xxxxxx_export_price_flex_down`           | Earnings lost per kWh if you reduce exports          | $/kWh       |
+| Import Cost (flex up)            | `sensor.nmi_4103xxxxxx_import_cost_flex_up`              | Extra cost per kWh if you import more                | $/kWh       |
+| Import Cost (flex down)          | `sensor.nmi_4103xxxxxx_import_cost_flex_down`            | Savings per kWh if you reduce imports                | $/kWh       |
+| Peak Demand                      | `sensor.nmi_4103xxxxxx_peak_demand`                      | Peak average demand over the demand window           | kW (or kVA) |
+| Total Exports                    | `sensor.nmi_4103xxxxxx_total_exports`                    | Energy exported during the interval                  | kWh         |
+| Total Imports                    | `sensor.nmi_4103xxxxxx_total_imports`                    | Energy imported during the interval                  | kWh         |
+| Total Earnings                   | `sensor.nmi_4103xxxxxx_total_earnings`                   | Total earnings in the interval                       | $           |
+| Variable Earnings                | `sensor.nmi_4103xxxxxx_variable_earnings`                | Variable portion of earnings                         | $           |
+| Fixed Earnings                   | `sensor.nmi_4103xxxxxx_fixed_earnings`                   | Fixed portion of earnings                            | $           |
+| Total Costs                      | `sensor.nmi_4103xxxxxx_total_costs`                      | Total costs in the interval                          | $           |
+| Variable Costs                   | `sensor.nmi_4103xxxxxx_variable_costs`                   | Variable portion of costs                            | $           |
+| Fixed Costs                      | `sensor.nmi_4103xxxxxx_fixed_costs`                      | Fixed portion of costs                               | $           |
+| Variable Export Rate             | `sensor.nmi_4103xxxxxx_variable_export_rate`             | Variable earnings rate (N/A when no exports)         | $/kWh       |
+| Variable Import Rate             | `sensor.nmi_4103xxxxxx_variable_import_rate`             | Variable cost rate (N/A when no imports)             | $/kWh       |
+| Export Emissions                 | `sensor.nmi_4103xxxxxx_export_emissions`                 | Emissions associated with grid‑injected energy       | gCO₂e       |
+| Import Emissions                 | `sensor.nmi_4103xxxxxx_import_emissions`                 | Emissions associated with energy drawn from the grid  | gCO₂e       |
+| Export Renewables %              | `sensor.nmi_4103xxxxxx_export_renewables_pct`            | Share of zero‑emission energy in exports             | %           |
+| Import Renewables %              | `sensor.nmi_4103xxxxxx_import_renewables_pct`            | Share of zero‑emission energy in imports             | %           |
+| Data Lag                         | `sensor.nmi_4103xxxxxx_data_lag`                         | Seconds between interval start and last data refresh | s           |
+|  Interval End                     | `sensor.nmi_4103xxxxxx_interval_end`                     | UTC timestamp marking the end of the current interval| datetime    |
+| Last Update                      | `sensor.nmi_4103xxxxxx_last_update`                      | When the data was last fetched from Localvolts       | datetime    |
+| Data Quality                     | `sensor.nmi_4103xxxxxx_data_quality`                     | `Act`, `Exp`, or `Fcst`                               | –           |
 
 All sensors update every 20 seconds.
 
