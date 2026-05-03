@@ -1,0 +1,19 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Localvolts Energy Monitor",
+        "data": {
+          "api_key": "API Key",
+          "partner_id": "Partner ID",
+          "nmi_id": "NMI ID"
+        }
+      }
+    },
+    "error": {
+      "invalid_api_key": "Invalid API Key",
+      "invalid_partner_id": "Invalid Partner ID",
+      "invalid_nmi_id": "NMI must be a 10-character identifier"
+    }
+  }
+}
