@@ -1,4 +1,4 @@
-# Localvolts Energy Monitor for Home Assistant
+# Localvolts Peer‑to‑Peer Energy Monitor for Home Assistant
 
 Real-time energy pricing, emissions, and interval data from your Localvolts electricity plan – directly inside Home Assistant.
 
