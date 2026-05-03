@@ -18,7 +18,9 @@ SCAN_INTERVAL = datetime.timedelta(seconds=20)
 class LocalvoltsMonitorCoordinator(DataUpdateCoordinator):
     """Manages fetching data from Localvolts API."""
 
-    def __init__(self, hass: HomeAssistant, api_key: str, partner_id: str, nmi_id: str) -> None:
+    def __init__(
+        self, hass: HomeAssistant, api_key: str, partner_id: str, nmi_id: str
+    ) -> None:
         self.api_key = api_key
         self.partner_id = partner_id
         self.nmi_id = nmi_id
@@ -27,21 +29,36 @@ class LocalvoltsMonitorCoordinator(DataUpdateCoordinator):
         self.time_past_start: datetime.timedelta = datetime.timedelta(0)
         self.data: Dict[str, Any] = {}
 
-        super().__init__(hass, _LOGGER, name="Localvolts Monitor", update_interval=SCAN_INTERVAL)
+        super().__init__(
+            hass,
+            _LOGGER,
+            name="Localvolts Monitor",
+            update_interval=SCAN_INTERVAL,
+        )
 
     async def _async_update_data(self) -> Dict[str, Any]:
         now_utc = datetime.datetime.now(datetime.timezone.utc)
-        from_time = now_utc - datetime.timedelta(minutes=15)
-        to_time = now_utc
+        # Request the interval that is just starting (real-time data)
+        from_time = now_utc
+        to_time = now_utc + datetime.timedelta(minutes=5)
 
-        fmt = "%Y-%m-%dT%H:%M:%SZ"
-        url = (f"https://api.localvolts.com/v1/customer/interval?"
-               f"NMI={self.nmi_id}&from={from_time.strftime(fmt)}&to={to_time.strftime(fmt)}")
-        headers = {"Authorization": f"apikey {self.api_key}", "partner": self.partner_id}
+        url = (
+            "https://api.localvolts.com/v1/customer/interval?"
+            f"NMI={self.nmi_id}"
+            f"&from={from_time.strftime('%Y-%m-%dT%H:%M:%SZ')}"
+            f"&to={to_time.strftime('%Y-%m-%dT%H:%M:%SZ')}"
+        )
+        headers = {
+            "Authorization": f"apikey {self.api_key}",
+            "partner": self.partner_id,
+        }
+
+        # Add a timeout to fail quickly if the server is unresponsive
+        timeout = aiohttp.ClientTimeout(total=30)
 
         try:
             session = async_get_clientsession(self.hass)
-            async with session.get(url, headers=headers) as resp:
+            async with session.get(url, headers=headers, timeout=timeout) as resp:
                 if resp.status == 401:
                     raise UpdateFailed("Invalid API key (401)")
                 if resp.status == 403:
@@ -55,6 +72,7 @@ class LocalvoltsMonitorCoordinator(DataUpdateCoordinator):
             _LOGGER.warning("Empty response, keeping previous data")
             return self.data
 
+        # Use the first (most relevant) interval returned
         self.data = raw_data[0]
         self._process_timestamps(self.data)
         return self.data
