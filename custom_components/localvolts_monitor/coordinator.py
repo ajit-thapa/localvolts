@@ -34,8 +34,9 @@ class LocalvoltsMonitorCoordinator(DataUpdateCoordinator):
         from_time = now_utc - datetime.timedelta(minutes=5)
         to_time = now_utc
 
+        fmt = "%Y-%m-%dT%H:%M:%SZ"
         url = (f"https://api.localvolts.com/v1/customer/interval?"
-               f"NMI={self.nmi_id}&from={from_time.isoformat()}&to={to_time.isoformat()}")
+               f"NMI={self.nmi_id}&from={from_time.strftime(fmt)}&to={to_time.strftime(fmt)}")
         headers = {"Authorization": f"apikey {self.api_key}", "partner": self.partner_id}
 
         try:
