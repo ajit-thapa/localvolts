@@ -1,4 +1,4 @@
-"""Config flow for Localvolts Energy Monitor."""
+"""Config flow for Localvolt HA Integration."""
 import logging
 import voluptuous as vol
 

@@ -1,6 +1,6 @@
 {
   "domain": "localvolts_monitor",
-  "name": "Localvolts Energy Monitor",
+  "name": "Localvolt HA Integration",
   "config_flow": true,
   "documentation": "https://github.com/ajit-thapa/localvolts",
   "issue_tracker": "https://github.com/ajit-thapa/localvolts/issues",

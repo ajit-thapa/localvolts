@@ -1,10 +1,10 @@
-# Test Coverage Analysis - Localvolts Energy Monitor
+# Test Coverage Analysis - Localvolt HA Integration
 
 ## Executive Summary
 
 **Current Test Coverage: 0%**
 
-The Localvolts Energy Monitor integration has no automated tests. This analysis identifies critical gaps and proposes a prioritized testing roadmap to improve reliability and prevent regressions.
+The Localvolt HA Integration has no automated tests. This analysis identifies critical gaps and proposes a prioritized testing roadmap to improve reliability and prevent regressions.
 
 ---
 

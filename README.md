@@ -1,4 +1,4 @@
-# Localvolts Peer‑to‑Peer Energy Monitor for Home Assistant
+# Localvolt HA Integration
 
 Real-time energy pricing, emissions, and interval data from your Localvolts electricity plan – directly inside Home Assistant.
 
@@ -40,7 +40,7 @@ All sensors follow the `lv_` naming convention and appear under one device named
 4. Paste the repository URL:  
    `https://github.com/ajit-thapa/localvolts`
 5. Choose **Integration** as the category and click **Add**.
-6. Still in HACS, search for "Localvolts Energy Monitor" and click **Download**.
+6. Still in HACS, search for "Localvolt HA Integration" and click **Download**.
 7. Restart Home Assistant.
 
 ### Manual
@@ -56,7 +56,7 @@ All sensors follow the `lv_` naming convention and appear under one device named
 After installation, add the integration via the Home Assistant UI:
 
 1. Go to **Settings → Devices & Services → Add Integration**.
-2. Search for **Localvolts Energy Monitor**.
+2. Search for **Localvolt HA Integration**.
 3. Enter your **API Key**, **Partner ID**, and **NMI ID** (10‑character identifier, without checksum).
 
 The integration will validate your inputs and create all sensors automatically.
