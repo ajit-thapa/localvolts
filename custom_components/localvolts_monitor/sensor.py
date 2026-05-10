@@ -31,14 +31,16 @@ class LocalvoltsNumericSensor(CoordinatorEntity, SensorEntity):
         unit: str,
         device_class: SensorDeviceClass | None,
         factor: float,
+        icon: str | None = None,
     ) -> None:
         super().__init__(coordinator)
         self._key = key
         nmi = coordinator.nmi_id
-        self._attr_name = f"NMI {nmi} {suffix}"
-        self._attr_unique_id = f"{nmi}_{key}"
+        self._attr_name = suffix
+        self._attr_unique_id = f"lv_{key}"
         self._attr_native_unit_of_measurement = unit
         self._attr_device_class = device_class
+        self._attr_icon = icon
         self._factor = factor
         self._cached_value: float | None = None
 
@@ -68,13 +70,14 @@ class LocalvoltsDataLagSensor(CoordinatorEntity, SensorEntity):
 
     _attr_native_unit_of_measurement = "s"
     _attr_device_class = SensorDeviceClass.DURATION
+    _attr_icon = "mdi:timer"
     _attr_should_poll = False
 
     def __init__(self, coordinator: LocalvoltsMonitorCoordinator) -> None:
         super().__init__(coordinator)
         nmi = coordinator.nmi_id
-        self._attr_name = f"NMI {nmi} Data Lag"
-        self._attr_unique_id = f"{nmi}_data_lag"
+        self._attr_name = "Data Lag"
+        self._attr_unique_id = "lv_data_lag"
         self._attr_device_info = {
             "identifiers": {(DOMAIN, nmi)},
             "name": f"Localvolts NMI {nmi}",
@@ -93,13 +96,14 @@ class LocalvoltsIntervalEndSensor(CoordinatorEntity, SensorEntity):
     """Timestamp of current interval's end."""
 
     _attr_device_class = SensorDeviceClass.TIMESTAMP
+    _attr_icon = "mdi:clock-outline"
     _attr_should_poll = False
 
     def __init__(self, coordinator: LocalvoltsMonitorCoordinator) -> None:
         super().__init__(coordinator)
         nmi = coordinator.nmi_id
-        self._attr_name = f"NMI {nmi} Interval End"
-        self._attr_unique_id = f"{nmi}_interval_end"
+        self._attr_name = "Interval End"
+        self._attr_unique_id = "lv_interval_end"
         self._attr_device_info = {
             "identifiers": {(DOMAIN, nmi)},
             "name": f"Localvolts NMI {nmi}",
@@ -117,13 +121,14 @@ class LocalvoltsLastUpdateSensor(CoordinatorEntity, SensorEntity):
     """Timestamp when data was last updated."""
 
     _attr_device_class = SensorDeviceClass.TIMESTAMP
+    _attr_icon = "mdi:clock-check"
     _attr_should_poll = False
 
     def __init__(self, coordinator: LocalvoltsMonitorCoordinator) -> None:
         super().__init__(coordinator)
         nmi = coordinator.nmi_id
-        self._attr_name = f"NMI {nmi} Last Update"
-        self._attr_unique_id = f"{nmi}_last_update"
+        self._attr_name = "Last Update"
+        self._attr_unique_id = "lv_last_update"
         self._attr_device_info = {
             "identifiers": {(DOMAIN, nmi)},
             "name": f"Localvolts NMI {nmi}",
@@ -141,14 +146,15 @@ class LocalvoltsQualitySensor(CoordinatorEntity, SensorEntity):
     """Data quality indicator (Act, Exp, Fcst)."""
 
     _attr_device_class = SensorDeviceClass.ENUM
+    _attr_icon = "mdi:information"
     _attr_options = ["Act", "Exp", "Fcst"]
     _attr_should_poll = False
 
     def __init__(self, coordinator: LocalvoltsMonitorCoordinator) -> None:
         super().__init__(coordinator)
         nmi = coordinator.nmi_id
-        self._attr_name = f"NMI {nmi} Data Quality"
-        self._attr_unique_id = f"{nmi}_quality"
+        self._attr_name = "Data Quality"
+        self._attr_unique_id = "lv_quality"
         self._attr_device_info = {
             "identifiers": {(DOMAIN, nmi)},
             "name": f"Localvolts NMI {nmi}",
@@ -170,9 +176,9 @@ async def async_setup_entry(
     coordinator = hass.data[DOMAIN][config_entry.entry_id]
 
     entities = []
-    for key, suffix, unit, device_class, factor in SENSOR_DEFINITIONS:
+    for key, suffix, unit, device_class, factor, icon in SENSOR_DEFINITIONS:
         entities.append(
-            LocalvoltsNumericSensor(coordinator, key, suffix, unit, device_class, factor)
+            LocalvoltsNumericSensor(coordinator, key, suffix, unit, device_class, factor, icon)
         )
     entities.append(LocalvoltsDataLagSensor(coordinator))
     entities.append(LocalvoltsIntervalEndSensor(coordinator))
