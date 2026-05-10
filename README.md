@@ -16,7 +16,7 @@ This integration creates 22 sensors grouped under a single device, giving you li
 - **Data quality:** Know whether the data is `Act`(ual), `Exp`(ected), or `Fcst`(forecast)
 - **Automatic polling** every 20 seconds
 
-All sensors are prefixed with `LV` and appear under one device named **Localvolts NMI xxxx**.
+All sensors follow the `lv_` naming convention and appear under one device named **Localvolts NMI xxxx**.
 
 ---
 
@@ -65,36 +65,36 @@ The integration will validate your inputs and create all sensors automatically.
 
 ## Sensors
 
-All sensors follow the pattern `sensor.nmi_<NMI_ID>_<sensor_key>`.  
-Example for NMI `4103XXXXXX`:
-- `sensor.nmi_4103xxxxxx_export_price_flex_up`
-- `sensor.nmi_4103xxxxxx_data_lag`
+All sensors follow the pattern `sensor.lv_<sensor_key>`.  
+Example entities:
+- `sensor.lv_earnings_flex_up`
+- `sensor.lv_data_lag`
 
-| Sensor name (user‑friendly)                | Entity ID example (NMI=4103xxxxxx)                       | Description                                            | Unit        |
-|--------------------------------------------|----------------------------------------------------------|--------------------------------------------------------|-------------|
-| Export Price (flex up)           | `sensor.nmi_4103xxxxxx_export_price_flex_up`             | Extra earnings per kWh if you export more            | $/kWh       |
-| Export Price (flex down)         | `sensor.nmi_4103xxxxxx_export_price_flex_down`           | Earnings lost per kWh if you reduce exports          | $/kWh       |
-| Import Cost (flex up)            | `sensor.nmi_4103xxxxxx_import_cost_flex_up`              | Extra cost per kWh if you import more                | $/kWh       |
-| Import Cost (flex down)          | `sensor.nmi_4103xxxxxx_import_cost_flex_down`            | Savings per kWh if you reduce imports                | $/kWh       |
-| Peak Demand                      | `sensor.nmi_4103xxxxxx_peak_demand`                      | Peak average demand over the demand window           | kW (or kVA) |
-| Total Exports                    | `sensor.nmi_4103xxxxxx_total_exports`                    | Energy exported during the interval                  | kWh         |
-| Total Imports                    | `sensor.nmi_4103xxxxxx_total_imports`                    | Energy imported during the interval                  | kWh         |
-| Total Earnings                   | `sensor.nmi_4103xxxxxx_total_earnings`                   | Total earnings in the interval                       | $           |
-| Variable Earnings                | `sensor.nmi_4103xxxxxx_variable_earnings`                | Variable portion of earnings                         | $           |
-| Fixed Earnings                   | `sensor.nmi_4103xxxxxx_fixed_earnings`                   | Fixed portion of earnings                            | $           |
-| Total Costs                      | `sensor.nmi_4103xxxxxx_total_costs`                      | Total costs in the interval                          | $           |
-| Variable Costs                   | `sensor.nmi_4103xxxxxx_variable_costs`                   | Variable portion of costs                            | $           |
-| Fixed Costs                      | `sensor.nmi_4103xxxxxx_fixed_costs`                      | Fixed portion of costs                               | $           |
-| Variable Export Rate             | `sensor.nmi_4103xxxxxx_variable_export_rate`             | Variable earnings rate (N/A when no exports)         | $/kWh       |
-| Variable Import Rate             | `sensor.nmi_4103xxxxxx_variable_import_rate`             | Variable cost rate (N/A when no imports)             | $/kWh       |
-| Export Emissions                 | `sensor.nmi_4103xxxxxx_export_emissions`                 | Emissions associated with grid‑injected energy       | gCO₂e       |
-| Import Emissions                 | `sensor.nmi_4103xxxxxx_import_emissions`                 | Emissions associated with energy drawn from the grid  | gCO₂e       |
-| Export Renewables %              | `sensor.nmi_4103xxxxxx_export_renewables_pct`            | Share of zero‑emission energy in exports             | %           |
-| Import Renewables %              | `sensor.nmi_4103xxxxxx_import_renewables_pct`            | Share of zero‑emission energy in imports             | %           |
-| Data Lag                         | `sensor.nmi_4103xxxxxx_data_lag`                         | Seconds between interval start and last data refresh | s           |
-|  Interval End                     | `sensor.nmi_4103xxxxxx_interval_end`                     | UTC timestamp marking the end of the current interval| datetime    |
-| Last Update                      | `sensor.nmi_4103xxxxxx_last_update`                      | When the data was last fetched from Localvolts       | datetime    |
-| Data Quality                     | `sensor.nmi_4103xxxxxx_data_quality`                     | `Act`, `Exp`, or `Fcst`                               | –           |
+| Sensor name (user‑friendly)                | Entity ID                                  | Description                                            | Unit        |
+|--------------------------------------------|-------------------------------------------|--------------------------------------------------------|-------------|
+| Export Price (flex up)           | `sensor.lv_earnings_flex_up`                | Extra earnings per kWh if you export more            | $/kWh       |
+| Export Price (flex down)         | `sensor.lv_earnings_flex_down`              | Earnings lost per kWh if you reduce exports          | $/kWh       |
+| Import Cost (flex up)            | `sensor.lv_costs_flex_up`                   | Extra cost per kWh if you import more                | $/kWh       |
+| Import Cost (flex down)          | `sensor.lv_costs_flex_down`                 | Savings per kWh if you reduce imports                | $/kWh       |
+| Peak Demand                      | `sensor.lv_demand_main`                     | Peak average demand over the demand window           | kW (or kVA) |
+| Total Exports                    | `sensor.lv_exports_all`                     | Energy exported during the interval                  | kWh         |
+| Total Imports                    | `sensor.lv_imports_all`                     | Energy imported during the interval                  | kWh         |
+| Total Earnings                   | `sensor.lv_earnings_all`                    | Total earnings in the interval                       | $           |
+| Variable Earnings                | `sensor.lv_earnings_all_var`                | Variable portion of earnings                         | $           |
+| Fixed Earnings                   | `sensor.lv_earnings_all_fixed`              | Fixed portion of earnings                            | $           |
+| Total Costs                      | `sensor.lv_costs_all`                       | Total costs in the interval                          | $           |
+| Variable Costs                   | `sensor.lv_costs_all_var`                   | Variable portion of costs                            | $           |
+| Fixed Costs                      | `sensor.lv_costs_all_fixed`                 | Fixed portion of costs                               | $           |
+| Variable Export Rate             | `sensor.lv_earnings_all_var_rate`           | Variable earnings rate (N/A when no exports)         | $/kWh       |
+| Variable Import Rate             | `sensor.lv_costs_all_var_rate`              | Variable cost rate (N/A when no imports)             | $/kWh       |
+| Export Emissions                 | `sensor.lv_exports_all_emissions`           | Emissions associated with grid‑injected energy       | gCO₂e       |
+| Import Emissions                 | `sensor.lv_imports_all_emissions`           | Emissions associated with energy drawn from the grid  | gCO₂e       |
+| Export Renewables %              | `sensor.lv_exports_all_zero_ee`             | Share of zero‑emission energy in exports             | %           |
+| Import Renewables %              | `sensor.lv_imports_all_zero_ee`             | Share of zero‑emission energy in imports             | %           |
+| Data Lag                         | `sensor.lv_data_lag`                        | Seconds between interval start and last data refresh | s           |
+|  Interval End                     | `sensor.lv_interval_end`                    | UTC timestamp marking the end of the current interval| datetime    |
+| Last Update                      | `sensor.lv_last_update`                     | When the data was last fetched from Localvolts       | datetime    |
+| Data Quality                     | `sensor.lv_quality`                         | `Act`, `Exp`, or `Fcst`                               | –           |
 
 All sensors update every 20 seconds.
 
@@ -108,11 +108,11 @@ Charge a battery only when the export price is low and import cost is high:
 alias: "Battery charging on cheap import"
 trigger:
   - platform: numeric_state
-    entity_id: sensor.nmi_4103xxxxxx_import_cost_flex_up
+    entity_id: sensor.lv_costs_flex_up
     below: 0.15
 condition:
-  - condition: numeric_state
-    entity_id: sensor.nmi_4103xxxxxx_data_quality
+  - condition: state
+    entity_id: sensor.lv_quality
     state: "Exp"
 action:
   - service: switch.turn_on
@@ -126,7 +126,7 @@ Avoid exporting when you'd lose money:
 alias: "Stop exporting when price negative"
 trigger:
   - platform: numeric_state
-    entity_id: sensor.nmi_4103xxxxxx_export_price_flex_up
+    entity_id: sensor.lv_earnings_flex_up
     below: 0
 action:
   - service: switch.turn_off
