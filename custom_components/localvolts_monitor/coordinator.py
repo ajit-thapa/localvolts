@@ -1,4 +1,4 @@
-"""Coordinator for Localvolts Energy Monitor."""
+"""Coordinator for Localvolt HA Integration."""
 import datetime
 import logging
 from dateutil import parser, tz

@@ -2,7 +2,7 @@
   "config": {
     "step": {
       "user": {
-        "title": "Localvolts Energy Monitor",
+        "title": "Localvolt HA Integration",
         "data": {
           "api_key": "API Key",
           "partner_id": "Partner ID",

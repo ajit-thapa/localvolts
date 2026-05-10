@@ -1,4 +1,4 @@
-"""Sensors for Localvolts Energy Monitor."""
+"""Sensors for Localvolt HA Integration."""
 from __future__ import annotations
 
 import logging
