@@ -1,4 +1,4 @@
-"""Localvolts Energy Monitor integration."""
+"""Localvolt HA Integration."""
 import logging
 from homeassistant.core import HomeAssistant
 from homeassistant.config_entries import ConfigEntry

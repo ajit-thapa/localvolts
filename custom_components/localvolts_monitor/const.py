@@ -1,4 +1,4 @@
-"""Constants for Localvolts Energy Monitor."""
+"""Constants for Localvolt HA Integration."""
 
 DOMAIN = "localvolts_monitor"
 
